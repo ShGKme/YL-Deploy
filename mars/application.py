@@ -105,8 +105,8 @@ def add_news():
         return redirect('/')
     return render_template('news.html', title='Добавление новости', form=form)
 
-
-db_session.global_init('db/mars_explorer.db')
+from os import path
+db_session.global_init(path.join(path.dirname(__file__), './db/mars_explorer.db'))
 
 
 def run():
