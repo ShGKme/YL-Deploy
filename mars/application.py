@@ -1,7 +1,8 @@
-from flask import Flask, render_template, redirect, url_for
-from flask_login import LoginManager, login_user, current_user, logout_user, login_required
+import os
 import time
 from datetime import timedelta
+from flask import Flask, render_template, redirect, url_for
+from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 from mars.data import db_session
 from mars.data.models import User, News
 from mars.forms import LoginForm, RegisterForm, NewsForm
@@ -110,4 +111,5 @@ db_session.global_init(path.join(path.dirname(__file__), './db/mars_explorer.db'
 
 
 def run():
-    app.run(host='0.0.0.0', port='8000', debug=False)    
+    port = int(os.environ.get('PORT', 8080))
+    app.run(host='0.0.0.0', port=port, debug=False)
